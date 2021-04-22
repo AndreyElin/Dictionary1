@@ -1,4 +1,4 @@
-package andrey.elin.dictionary.model.datasource
+package andrey.elin.dictionary.model.data.api
 
 import andrey.elin.dictionary.model.data.DataModel
 import io.reactivex.Observable

@@ -1,4 +1,4 @@
-package andrey.elin.dictionary.presenter
+package andrey.elin.dictionary.viewmodel
 
 import io.reactivex.Observable
 
