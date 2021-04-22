@@ -2,6 +2,8 @@ package andrey.elin.dictionary.model.datasource
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import andrey.elin.dictionary.model.data.DataModel
+import andrey.elin.dictionary.model.data.api.ApiService
+import andrey.elin.dictionary.model.data.api.BaseInterceptor
 import io.reactivex.Observable
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient

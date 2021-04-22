@@ -1,6 +1,6 @@
 package andrey.elin.dictionary.view.main
 
-import andrey.elin.dictionary.presenter.Interactor
+import andrey.elin.dictionary.viewmodel.Interactor
 import andrey.elin.dictionary.model.data.AppState
 import andrey.elin.dictionary.model.data.DataModel
 import andrey.elin.dictionary.model.repository.Repository
