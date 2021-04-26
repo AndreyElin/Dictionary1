@@ -1,21 +1,22 @@
 package andrey.elin.dictionary.view.main
 
-import andrey.elin.dictionary.viewmodel.Interactor
 import andrey.elin.dictionary.model.data.AppState
 import andrey.elin.dictionary.model.data.DataModel
 import andrey.elin.dictionary.model.repository.Repository
-import io.reactivex.Observable
+import andrey.elin.dictionary.viewmodel.Interactor
 
 class MainInteractor(
-    private val remoteRepository: Repository<List<DataModel>>,
-    private val localRepository: Repository<List<DataModel>>
+    private val repositoryRemote: Repository<List<DataModel>>,
+    private val repositoryLocal: Repository<List<DataModel>>
 ) : Interactor<AppState> {
 
-    override fun getData(word: String, fromRemoteSource: Boolean): Observable<AppState> {
-        return if (fromRemoteSource) {
-            remoteRepository.getData(word).map { AppState.Success(it) }
-        } else {
-            localRepository.getData(word).map { AppState.Success(it) }
-        }
+    override suspend fun getData(word: String, fromRemoteSource: Boolean): AppState {
+        return AppState.Success(
+            if (fromRemoteSource) {
+                repositoryRemote
+            } else {
+                repositoryLocal
+            }.getData(word)
+        )
     }
 }
