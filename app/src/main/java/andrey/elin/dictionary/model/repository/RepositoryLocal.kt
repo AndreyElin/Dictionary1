@@ -1,8 +1,8 @@
-package andrey.elin.dictionary.model.datasource
+package andrey.elin.dictionary.model.repository
 
 import andrey.elin.dictionary.model.data.AppState
 
-interface DataSourceLocal<T> : DataSource<T> {
+interface RepositoryLocal<T> : Repository<T> {
 
     suspend fun saveToDB(appState: AppState)
 }

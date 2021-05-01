@@ -1,4 +1,4 @@
-package andrey.elin.dictionary.model.datasource
+package andrey.elin.dictionary.model.data.api
 
 import okhttp3.Interceptor
 import okhttp3.Response
