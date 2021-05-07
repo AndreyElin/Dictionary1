@@ -1,10 +1,10 @@
 package andrey.elin.dictionary.view.main
 
-import andrey.elin.dictionary.model.data.AppState
-import andrey.elin.dictionary.model.data.DataModel
-import andrey.elin.dictionary.model.repository.Repository
-import andrey.elin.dictionary.model.repository.RepositoryLocal
-import andrey.elin.dictionary.viewmodel.Interactor
+import andrey.elin.model.data.AppState
+import andrey.elin.model.data.DataModel
+import andrey.elin.repository.Repository
+import andrey.elin.repository.RepositoryLocal
+import andrey.elin.core.viewmodel.Interactor
 
 class MainInteractor(
     private val repositoryRemote: Repository<List<DataModel>>,

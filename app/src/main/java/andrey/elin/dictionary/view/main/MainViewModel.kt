@@ -1,8 +1,8 @@
 package andrey.elin.dictionary.view.main
 
-import andrey.elin.dictionary.model.data.AppState
+import andrey.elin.model.data.AppState
 import andrey.elin.dictionary.utils.parseOnlineSearchResults
-import andrey.elin.dictionary.viewmodel.BaseViewModel
+import andrey.elin.core.viewmodel.BaseViewModel
 import androidx.lifecycle.LiveData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -20,7 +20,8 @@ class MainViewModel (private val interactor: MainInteractor) :
     override fun getData(word: String, isOnline: Boolean) {
         _mutableLiveData.value = AppState.Loading(null)
         cancelJob()
-        viewModelCoroutineScope.launch { startInteractor(word, isOnline) }
+        viewModelCoroutineScope.
+        launch { startInteractor(word, isOnline) }
     }
 
     private suspend fun startInteractor(word: String, isOnline: Boolean) = withContext(Dispatchers.IO) {

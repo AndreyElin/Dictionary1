@@ -1,8 +1,8 @@
 package andrey.elin.dictionary.view.descriptionscreen
 
 import andrey.elin.dictionary.R
-import andrey.elin.dictionary.utils.network.isOnline
-import andrey.elin.dictionary.utils.ui.AlertDialogFragment
+import andrey.elin.utils.network.isOnline
+import andrey.elin.utils.ui.AlertDialogFragment
 import android.content.Context
 import android.content.Intent
 import android.graphics.drawable.Drawable

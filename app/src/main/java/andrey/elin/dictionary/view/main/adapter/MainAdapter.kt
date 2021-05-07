@@ -5,7 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import andrey.elin.dictionary.R
-import andrey.elin.dictionary.model.data.DataModel
+import andrey.elin.model.data.DataModel
 import andrey.elin.dictionary.utils.convertMeaningsToString
 import kotlinx.android.synthetic.main.activity_main_recyclerview_item.view.*
 
