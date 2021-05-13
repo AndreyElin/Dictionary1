@@ -12,8 +12,11 @@ import andrey.elin.dictionary.view.main.adapter.MainAdapter
 import andrey.elin.model.data.AppState
 import andrey.elin.model.data.DataModel
 import andrey.elin.utils.network.isOnline
+import android.annotation.SuppressLint
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.provider.Settings
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -32,7 +35,8 @@ import org.koin.android.viewmodel.ext.android.viewModel
 private const val BOTTOM_SHEET_FRAGMENT_DIALOG_TAG = "74a54328-5d62-46bf-ab6b-cbf5fgt0-092395"
 private const val HISTORY_ACTIVITY_PATH = "andrey.elin.historyscreen.view.history.HistoryActivity"
 private const val HISTORY_ACTIVITY_FEATURE_NAME = "historyScreen"
-private const val REQUEST_CODE = 42
+private const val REQUEST_CODE_1 = 42 // update
+private const val REQUEST_CODE_2 = 43 // Settings panel
 
 class MainActivity : BaseActivity<AppState, MainInteractor>() {
 
@@ -103,7 +107,7 @@ class MainActivity : BaseActivity<AppState, MainInteractor>() {
                         appUpdateInfo,
                         IMMEDIATE,
                         this,
-                        REQUEST_CODE
+                        REQUEST_CODE_1
                     )
                 }
             }
@@ -111,7 +115,7 @@ class MainActivity : BaseActivity<AppState, MainInteractor>() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == REQUEST_CODE) {
+        if (requestCode == REQUEST_CODE_1) {
             if (resultCode == RESULT_OK) {
                 appUpdateManager.unregisterListener(stateUpdatedListener)
             } else {
@@ -129,10 +133,13 @@ class MainActivity : BaseActivity<AppState, MainInteractor>() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.history_menu, menu)
+        menuInflater.inflate(R.menu.main_screen_menu, menu)
+        menu?.findItem(R.id.menu_screen_settings)?.isVisible =
+            Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q
         return super.onCreateOptionsMenu(menu)
     }
 
+    @SuppressLint("InlinedApi")
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.menu_history -> {
@@ -158,6 +165,10 @@ class MainActivity : BaseActivity<AppState, MainInteractor>() {
                     }
                 true
             }
+            R.id.menu_screen_settings -> {
+                startActivityForResult(Intent(Settings.Panel.ACTION_INTERNET_CONNECTIVITY), REQUEST_CODE_2)
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }
@@ -173,7 +184,7 @@ class MainActivity : BaseActivity<AppState, MainInteractor>() {
                     appUpdateIntent,
                     IMMEDIATE,
                     this,
-                    REQUEST_CODE
+                    REQUEST_CODE_1
                 )
             }
         }
