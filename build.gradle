@@ -1,0 +1,45 @@
+buildscript {
+    ext {
+        kotlin_version = '1.4.31'
+    }
+    repositories {
+        google()
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:4.2.0'
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.31'
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+    }
+}
+
+subprojects {
+    afterEvaluate { project ->
+        if (project.plugins.findPlugin('android') ?: project.plugins.findPlugin('android-library')) {
+            android {
+                compileSdkVersion Config.compile_sdk
+
+                defaultConfig {
+                    minSdkVersion Config.min_sdk
+                    targetSdkVersion Config.target_sdk
+                }
+
+                compileOptions {
+                    sourceCompatibility Config.java_version
+                    targetCompatibility Config.java_version
+                }
+            }
+        }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
